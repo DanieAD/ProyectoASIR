@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploymentabc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tercerpod
+  template:
+    metadata:
+      labels:
+        app: tercerpod
+    spec:
+      containers:
+      - name: tercerpod
+        image: nginx:latest
+        ports:
+        - containerPort: 8080
