@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploymentvolume
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mipod ## debe ser la misma que en template
+  template:
+    metadata:
+      labels:
+        app: mipod
+    spec:
+      containers:
+      - name: contenedorvolumen
+        image: daniead/miimagen2:v2
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+          - mountPath: "/mnt/data"
+            name: mivolumen   
+      volumes:
+      - name: mivolumen
+        persistentVolumeClaim:
+          claimName: mipvc2     
+---
