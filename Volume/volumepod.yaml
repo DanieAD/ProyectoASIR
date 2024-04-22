@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mipvcpod
+spec:
+  containers:
+  - name: contenedorvolumen
+    image: daniead/miimagen2:v2
+    volumeMounts:
+    - mountPath: "/mnt/data"
+      name: mivolumen
+  volumes:
+  - name: mivolumen
+    persistentVolumeClaim:
+      claimName: mipvc
